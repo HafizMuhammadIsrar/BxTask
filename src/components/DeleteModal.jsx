@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-const IsDeleteModal = ({ id, isDelete, closeDeleteModal }) => {
+const IsDeleteModal = ({ id, isDelete, closeDeleteModal, fetchBooks }) => {
   const deleteBooks = async (id) => {
     try {
       const response = await axios.delete(

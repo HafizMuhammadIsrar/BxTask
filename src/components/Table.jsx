@@ -130,6 +130,7 @@ const Table = () => {
         id={id}
         closeDeleteModal={closeDeleteModal}
         isDelete={isDelete}
+        fetchBooks={fetchBooks}
       />
     </div>
   );
