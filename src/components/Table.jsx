@@ -27,9 +27,7 @@ const Table = () => {
       setbooks(response.data);
 
       console.log("Books", response.data);
-      if (response.status === 200) {
-        dispatch(toggleReload());
-      }
+      dispatch(toggleReload());
     } catch (error) {
       console.error("Error ", error);
     }
@@ -52,7 +50,9 @@ const Table = () => {
     fetchBooks();
   }, []);
   useEffect(() => {
-    fetchBooks();
+    if (reload) {
+      fetchBooks();
+    }
   }, [reload]);
 
   return (
