@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleReload } from "../redux/reloadSlice";
 
 const AddModal = ({
   isOpen,
@@ -27,6 +29,8 @@ const AddModal = ({
     published_at: Yup.date().required("Date is required"),
   });
 
+  const dispatch = useDispatch();
+
   const initialValues = {
     title: title || "",
     author: author || "",
@@ -42,7 +46,9 @@ const AddModal = ({
       );
 
       console.log("Books", response.data);
-      window.location.reload();
+      if (response.status === 201) {
+        dispatch(toggleReload());
+      }
     } catch (error) {
       console.error("Error ", error);
     }
@@ -56,7 +62,7 @@ const AddModal = ({
       );
 
       console.log("Books", response.data);
-      window.location.reload();
+      dispatch(toggleReload());
     } catch (error) {
       console.error("Error ", error);
     }
